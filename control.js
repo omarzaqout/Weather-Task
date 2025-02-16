@@ -70,4 +70,42 @@ window.onload = function() {
     displayLastSearch(); 
 };
 
+
 updateRecentSearches();
+
+document.getElementById("getLocationBtn").addEventListener("click", function() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(`latitude ${latitude}, longitude${longitude}`);
+                const apiKey = "697b14274e4b4a2fa3b138bfcf967a1a"; 
+                const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`;
+
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    if (data.results.length > 0) {
+                        const components = data.results[0].components;
+                        const city = components.city 
+                        await fetchWeatherForCity(city, true);
+
+                    } else {
+                        document.getElementById("location").innerHTML = "error";
+                    }
+                } catch (error) {
+                    document.getElementById("location").innerHTML = "error";
+                    console.error("erorr", error);
+                }
+            },
+            (error) => {
+                document.getElementById("location").innerHTML = "error";
+                console.error("error", error.message);
+            }
+        );
+    } else {
+        document.getElementById("location").innerHTML = "error";
+    }
+});
