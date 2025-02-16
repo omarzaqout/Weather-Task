@@ -4,7 +4,6 @@ body{
     height: 90vh;
     background-image: linear-gradient(to bottom right,#de7845, #7a7379);
     color:white;
-   
 }
 .container{
     background-image: url(https://wallpaperaccess.com/full/24245.jpg);
@@ -26,14 +25,12 @@ body{
     background: rgba(161, 25, 186, 0.2);
     border-bottom-right-radius: 20px;
     justify-content: space-around;
-
 }
 input, button{
     flex: 1;
     padding: 10px;
     border: 2px solid gray;
     border-radius: 10px;
-
 }
 input{
     width: 75%;
@@ -43,16 +40,14 @@ input{
 }
 input:focus{
     border: 0.3px solid wheat;
-
 }
 input::placeholder{
     color: wheat;
-    
 }
 button{
     cursor:pointer ;
     color: orange;
-    width: 18%
+    width: 18%;
 }
 button:hover{
     background-color:rgb(228, 218, 218) ;
@@ -71,15 +66,11 @@ li{
 }
 a{
     text-decoration: none;
-    color:white
-    
+    color:white;
 }
-
-
 .title{
     border-bottom: 2px solid white;
 }
-
 .info{
     display: flex;
     margin-top: 2%;
@@ -88,13 +79,12 @@ a{
     flex: 2;
     flex-direction: column;
     justify-content: space-between;
-    }
+}
 .data{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    }
-
+}
 img{
     width: 10%;
 }
@@ -103,7 +93,7 @@ img{
 }
 .recent-search-list {
     max-height: 300px;
-    overflow-y: auto; 
+    overflow-y: auto;
     padding: 0;
     list-style-type: none;
 }
@@ -111,7 +101,7 @@ h1{
     font-size: 90px;
 }
 h2{
-    text-align: center
+    text-align: center;
 }
 .developer {
     margin-top: 20px;
@@ -124,5 +114,51 @@ h2{
     border-radius: 5px;
 }
 
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin: 10%;
+    }
+    .Search {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    input {
+        width: 95%;
+    }
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .info {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    h1 {
+        font-size: 50px;
+    }
+    .cloud {
+        margin-right: 5%;
+    }
+}
 
-
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 35px;
+    }
+    .container {
+        margin: 5%;
+    }
+    .Search {
+        width: 100%;
+    }
+    input, button {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .info {
+        flex-direction: column;
+        margin-left: 0;
+    }
+}
