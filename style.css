@@ -48,7 +48,7 @@ input::placeholder{
 button{
     cursor:pointer ;
     color: orange;
-    width: 18%;
+    width: auto;
 }
 button:hover{
     background-color:rgb(228, 218, 218) ;
@@ -173,9 +173,7 @@ h3{
 }
 
 @media screen and (max-width: 480px) {
-    body{
-        height: 100vh;
-    }
+    
     h1 {
         font-size: 35px;
     }
@@ -189,6 +187,7 @@ h3{
     }
     input, button {
         margin-top: 10px;
+        width:-webkit-fill-available;
     }
     .info {
         flex-direction: column;
