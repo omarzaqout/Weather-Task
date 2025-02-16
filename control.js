@@ -6,20 +6,21 @@ function addToRecentSearches(city) {
     localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
     updateRecentSearches();
 }
+
 function displayLastSearch() {
     let recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
     if (recentSearches.length > 0) {
         const lastCity = recentSearches[0];  
-        fetchWeatherForCity(lastCity);
+        fetchWeatherForCity(lastCity, false);
     }
 }
-async function fetchWeatherForCity(city) {
+
+async function fetchWeatherForCity(city, addToRecent = true) {
     const apiKey = "70e6806bc0b24220bed201504251502";
     const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`;
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            alert("City not found!");
             throw new Error("City not found!");
         }
         const data = await response.json();
@@ -32,33 +33,39 @@ async function fetchWeatherForCity(city) {
 
         const iconUrl = "https:" + data.current.condition.icon;
         document.getElementById("weather-icon").src = iconUrl;
-        addToRecentSearches(city);
+        
+        if (addToRecent) {
+            addToRecentSearches(city);
+        }
     } catch (error) {
         console.error("Error fetching weather data:", error);
         alert("Error fetching data");
     }
 }
+
 function updateRecentSearches() {
     let recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
     const list = document.querySelector(".recent-search ul");
     list.innerHTML = "";
     recentSearches.forEach(city => {
         const li = document.createElement("li");
-        li.innerHTML = `<a href="#" onclick="fetchWeatherForCity('${city}')">${city}</a>`;
+        li.innerHTML = `<a href="#" onclick="fetchWeatherForCity('${city}', false)">${city}</a>`;
         list.appendChild(li);
     });
 }
+
 async function fetchWeather() {
     const city = document.getElementById("search").value.trim();
     if (!city) return;
-    await fetchWeatherForCity(city);
-    addToRecentSearches(city);
+    await fetchWeatherForCity(city, true);
 }
+
 document.getElementById("search").addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         fetchWeather();
     }
 });
+
 window.onload = function() {
     displayLastSearch(); 
 };
