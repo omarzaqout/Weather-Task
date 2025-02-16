@@ -101,7 +101,16 @@ h1{
     font-size: 90px;
 }
 h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
     text-align: center;
+}
+#condition , #country{
+    font-weight: bold;
+}
+#humidity ,#wind{
+    font-size: larger;
+    
 }
 .developer {
     margin-top: 20px;
