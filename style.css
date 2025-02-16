@@ -136,12 +136,17 @@ h3{
 }
 
 @media screen and (max-width: 768px) {
+    body{
+        height: 100%;
+    }
     .container {
         flex-direction: column;
         margin: 10%;
+        height: 100%;
+        
     }
     .Search {
-        width: 100%;
+        width: 98%;
         margin-bottom: 10px;
     }
     input {
@@ -154,6 +159,7 @@ h3{
     .info {
         margin-left: 0;
         margin-top: 10px;
+        justify-content: flex-start;
     }
     h1 {
         font-size: 50px;
@@ -161,24 +167,34 @@ h3{
     .cloud {
         margin-right: 5%;
     }
+    .data{
+        flex-direction: column;
+        }
 }
 
 @media screen and (max-width: 480px) {
+    body{
+        height: 100vh;
+    }
     h1 {
         font-size: 35px;
     }
     .container {
         margin: 5%;
+        height: 95%;
     }
     .Search {
         width: 100%;
+        padding: 0;
     }
     input, button {
-        width: 100%;
         margin-top: 10px;
     }
     .info {
         flex-direction: column;
         margin-left: 0;
+    }
+    .recent-search-list {
+        max-height: 200px;
     }
 }
